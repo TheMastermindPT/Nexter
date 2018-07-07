@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -29,6 +30,16 @@ module.exports = {
       // both options are optional
       filename: "../styles/[name].css",
       chunkFilename: "../styles/[id].css"
+    }),
+    new HtmlWebpackPlugin({
+      filename: "../../dist/index.html",
+      title: "Nexter",
+      template: "source/index.html",
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      },
+      cache: true
     })
   ],
   module: {
